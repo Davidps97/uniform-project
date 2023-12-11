@@ -1,0 +1,207 @@
+.home-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #6cb64b;
+  height: 100dvh;
+  width: 100%;
+}
+
+.user-container {
+  width: 95%;
+  height: 99.76%;
+  background-color: #bce9a9;
+  border-top-left-radius: 5em;
+}
+
+.top-bar {
+  height: 6em;
+  width: 90%;
+  border-bottom: 2px solid #fff;
+  box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 6%;
+}
+
+.user-profile {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.user-profile div {
+  margin-left: 1.5em;
+}
+
+.user-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background: rgb(63, 62, 62) 50% / cover no-repeat;
+}
+
+.profile-arrow {
+  margin-top: 8px;
+}
+
+/*Roles page*/
+.input-roles {
+  width: 90%;
+  margin-left: 6%;
+  height: 40vh;
+  background-color: #6cb64b;
+  border-radius: 50px;
+  margin-top: 1.5%;
+}
+
+.input-roles h2 {
+  padding-top: 2%;
+  margin-left: 5%;
+  color: #fff;
+}
+
+.divide-bar {
+  width: 90%;
+  height: 1em;
+  margin-left: 6%;
+  border-bottom: 2px solid #fff;
+  box-shadow: 0px 4px 2px -2px rgba(0, 0, 0, 0.25);
+  margin-top: 1%;
+}
+
+/* Input css */
+.form__group {
+  margin-top: 3%;
+  margin-left: 7%;
+  position: relative;
+  padding: 20px 0 0;
+  width: 85%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  outline: 0;
+  font-size: 17px;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__field::placeholder {
+  color: transparent;
+}
+
+.form__field:placeholder-shown ~ .form__label {
+  font-size: 17px;
+  cursor: text;
+  top: 20px;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #ffffff, #bce9a9);
+  border-image-slice: 1;
+}
+
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* reset input */
+.form__field:required,
+.form__field:invalid {
+  box-shadow: none;
+}
+
+/* Button css */
+.button-create {
+  margin-left: 43%;
+  margin-top: 4%;
+  padding: 17px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: #bce9a9;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px bold;
+}
+
+.button-create:hover {
+  background-color: hsl(0, 0%, 100%);
+  color: #6cb64b;
+  box-shadow: rgb(83, 83, 83) 0px 7px 29px 0px;
+}
+
+.list-roles {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 6%;
+}
+
+.list-roles h2 {
+  color: #2f7810;
+}
+
+.roles-rows {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.role-name {
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.button-edit,
+.button-delete {
+  margin-left: 43%;
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 0;
+  background-color: #bce9a9;
+  box-shadow: rgb(0 0 0 / 30%) 0 0 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px bold;
+}
+
+.button-edit:hover,
+.button-delete:hover {
+  background-color: hsl(0, 0%, 100%);
+  color: #6cb64b;
+  box-shadow: rgb(83, 83, 83) 0px 7px 29px 0px;
+}
