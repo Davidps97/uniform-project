@@ -2,6 +2,7 @@ import Sidenav from "../../components/sidenav/sidenav";
 import "./profile.css";
 import { FaBell } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function Profile() {
   return (
@@ -37,9 +38,9 @@ function Profile() {
             <div>Role: </div>
             <div>Tier 1 Role</div>
           </div>
-          <div className="button-container">
+          <Link to="/" className="button-container">
             <button className="button-logout">Log Out</button>
-          </div>
+          </Link>
         </div>
       </div>
     </div>

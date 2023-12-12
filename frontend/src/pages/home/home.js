@@ -3,6 +3,7 @@ import Sidenav from "../../components/sidenav/sidenav";
 import "./home.css";
 import { FaBell } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -18,7 +19,7 @@ function Home() {
               <FaBell />
             </div>
             <div className="user-image"></div>
-            <div className="profile-settings">Profile </div>
+            <div className="profile-settings"><Link to="/profile">Profile</Link></div>
             <div className="profile-arrow">
               <IoIosArrowDown />
             </div>

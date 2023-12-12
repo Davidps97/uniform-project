@@ -44,36 +44,36 @@ function Users() {
           </div>
           <div className="users-create">
             <h2>Create User</h2>
-            <div class="form__group field">
+            <div className="form__group field">
               <input
                 type="input"
                 className="form__field"
                 placeholder="David Pérez"
                 required=""
               />
-              <label for="name" className="form__label">
+              <label htmlFor="name" className="form__label">
                 Name:
               </label>
             </div>
-            <div class="form__group field">
+            <div className="form__group field">
               <input
                 type="input"
                 className="form__field"
                 placeholder="davidperez@gmail.com"
                 required=""
               />
-              <label for="name" className="form__label">
+              <label htmlFor="name" className="form__label">
                 E-mail:
               </label>
             </div>
-            <div class="form__group field">
+            <div className="form__group field">
               <input
                 type="input"
                 className="form__field"
                 placeholder="************"
                 required=""
               />
-              <label for="name" className="form__label">
+              <label htmlFor="name" className="form__label">
                 Password:
               </label>
             </div>

@@ -69,8 +69,6 @@
 
 .form-btn {
   padding: 10px 15px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   border-radius: 20px;
   border: 0 !important;
   outline: 0 !important;
@@ -78,6 +76,8 @@
   color: rgb(0, 0, 0);
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .form-btn:active {

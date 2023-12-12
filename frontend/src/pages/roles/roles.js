@@ -26,18 +26,18 @@ function Roles() {
         <div className="roles-container">
           <div className="input-roles">
             <h2>Create Role</h2>
-            <div class="form__group field">
+            <div className="form__group field">
               <input
                 type="input"
                 className="form__field"
                 placeholder="Tier 1 Role"
                 required=""
               />
-              <label for="name" className="form__label">
+              <label htmlFor="name" className="form__label">
                 Role Name
               </label>
             </div>
-            <div className="button-container">
+            <div className="buttonRole-container">
               <button className="button-create">Create Role</button>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import "./sidenav.css";
+import { Link } from "react-router-dom";
 
 function Sidenav() {
   return (
@@ -8,8 +9,8 @@ function Sidenav() {
       </div>
       <div className="small-bar"></div>
       <div className="apps-container">
-        <div className="circles"></div>
-        <div className="circles"></div>
+        <Link to="../users" className="circles"></Link>
+        <Link to="../roles" className="circles"></Link>
         <div className="circles"></div>
         <div className="circles"></div>
         <div className="circles"></div>

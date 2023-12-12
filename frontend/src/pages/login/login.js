@@ -1,4 +1,5 @@
 import "./login.css";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -13,7 +14,9 @@ function Login() {
             <p className="page-link">
               <span className="page-link-label">Forgot Password?</span>
             </p>
-            <button className="form-btn">LOG IN</button>
+            <Link to="/home" className="form-btn">
+              LOG IN
+            </Link>
           </form>
         </div>
       </div>
