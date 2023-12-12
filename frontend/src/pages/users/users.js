@@ -1,9 +1,80 @@
+import { useEffect, useRef, useState } from "react";
 import Sidenav from "../../components/sidenav/sidenav";
 import "./users.css";
 import { FaBell } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import {
+  getAllUsers,
+  deleteUser,
+  updateUser,
+} from "../../services/user.service";
+import { register } from "../../services/auth";
 
 function Users() {
+  const [users, setUsers] = useState([]);
+  const [passwordV, setPasswordV] = useState(true);
+  const [userToUpdate, setUserToUpdate] = useState();
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const getUsers = async () => {
+    const allUsers = await getAllUsers();
+    setUsers(allUsers);
+    console.log(allUsers);
+  };
+
+  const handleDeleteUser = (id) => {
+    deleteUser(id).then((response) => {
+      getUsers();
+    });
+  };
+
+  const handleCreateUser = () => {
+    register(
+      nameRef.current.value,
+      emailRef.current.value,
+      passwordRef.current.value
+    ).then((response) => {
+      getUsers();
+      nameRef.current.value = "";
+      emailRef.current.value = "";
+      passwordRef.current.value = "";
+    });
+  };
+
+  const handlePutUser = (user) => {
+    setPasswordV(false);
+    nameRef.current.value = user.name;
+    emailRef.current.value = user.email;
+
+    setUserToUpdate(user.id);
+  };
+
+  const handleSaveUser = () => {
+    const user = {
+      name: nameRef.current.value,
+      email: emailRef.current.value,
+      id: userToUpdate,
+    };
+
+    updateUser(user).then((response) => {
+      getUsers();
+      handleCleanForm();
+    });
+  };
+
+  const handleCleanForm = () => {
+    setPasswordV(true);
+    nameRef.current.value = "";
+    emailRef.current.value = "";
+    setUserToUpdate();
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <div className="home-container">
       <Sidenav />
@@ -26,23 +97,42 @@ function Users() {
         <div className="users-crud-container">
           <div className="users-list">
             <h2>Users</h2>
-            <table class="users-table">
-              <tr class="user-row">
-                <td class="user-data">
-                  <div class="user-img"></div>
-                  <div class="user-name-role">
-                    <div class="user-name-list">David</div>
-                    <div class="user-role-list">Admin</div>
-                  </div>
-                </td>
-                <td class="edit-user">
-                  <button class="button-edit">edit</button>
-                </td>
-                <td class="delete-user">
-                  <button class="button-delete">delete</button>
-                </td>
-              </tr>
-            </table>
+            {users ? (
+              <table class="users-table">
+                <tbody>
+                  {users.map((user) => (
+                    <tr class="user-row">
+                      <td class="user-data">
+                        {/* <div class="user-img"></div> */}
+
+                        <div class="user-name-role">
+                          <div class="user-name-list">{user.name}</div>
+                          {/* <div class="user-role-list">Admin</div> */}
+                        </div>
+                      </td>
+                      <td class="edit-user">
+                        <button
+                          class="button-edit"
+                          onClick={() => handlePutUser(user)}
+                        >
+                          edit
+                        </button>
+                      </td>
+                      <td class="delete-user">
+                        <button
+                          class="button-delete"
+                          onClick={() => handleDeleteUser(user.id)}
+                        >
+                          delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              ""
+            )}
           </div>
           <div className="users-create">
             <h2>Create User</h2>
@@ -52,6 +142,7 @@ function Users() {
                 className="form__field"
                 placeholder="David Pérez"
                 required=""
+                ref={nameRef}
               />
               <label htmlFor="name" className="form__label">
                 Name:
@@ -63,24 +154,41 @@ function Users() {
                 className="form__field"
                 placeholder="davidperez@gmail.com"
                 required=""
+                ref={emailRef}
               />
               <label htmlFor="name" className="form__label">
                 E-mail:
               </label>
             </div>
-            <div className="form__group field">
-              <input
-                type="input"
-                className="form__field"
-                placeholder="************"
-                required=""
-              />
-              <label htmlFor="name" className="form__label">
-                Password:
-              </label>
-            </div>
+            {passwordV && (
+              <div className="form__group field">
+                <input
+                  type="input"
+                  className="form__field"
+                  placeholder="************"
+                  required=""
+                  ref={passwordRef}
+                />
+                <label htmlFor="name" className="form__label">
+                  Password:
+                </label>
+              </div>
+            )}
             <div className="button-container">
-              <button className="button-create">Add User</button>
+              {passwordV ? (
+                <button className="button-create" onClick={handleCreateUser}>
+                  Add User
+                </button>
+              ) : (
+                <div>
+                  <button className="button-create" onClick={handleSaveUser}>
+                    Update User
+                  </button>
+                  <button className="button-create" onClick={handleCleanForm}>
+                    Cancel Update
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>
