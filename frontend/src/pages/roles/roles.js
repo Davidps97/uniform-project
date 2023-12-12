@@ -26,10 +26,10 @@ function Roles() {
         <div className="roles-container">
           <div className="input-roles">
             <h2>Create Role</h2>
-            <div className="form__group field">
+            <div className="form__group ">
               <input
                 type="input"
-                className="form__field"
+                className="form__input"
                 placeholder="Tier 1 Role"
                 required=""
               />
@@ -44,15 +44,17 @@ function Roles() {
           <div className="divide-bar"></div>
           <div className="list-roles">
             <h2>Roles</h2>
-            <div className="roles-rows">
-              <div className="role-name">Tier 1 Role</div>
-              <div className="edit-role">
-                <button className="button-edit">edit</button>
-              </div>
-              <div className="delete-role">
-                <button className="button-delete">delete</button>
-              </div>
-            </div>
+            <table class="roles-table">
+              <tr class="roles-row">
+                <td class="role-name">Tier 1 Role</td>
+                <td class="edit-role">
+                  <button class="button-edit">edit</button>
+                </td>
+                <td class="delete-role">
+                  <button class="button-delete">delete</button>
+                </td>
+              </tr>
+            </table>
           </div>
         </div>
       </div>

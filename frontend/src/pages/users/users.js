@@ -26,21 +26,23 @@ function Users() {
         <div className="users-crud-container">
           <div className="users-list">
             <h2>Users</h2>
-            <div className="user-row">
-              <div className="user-data">
-                <div className="user-img"></div>
-                <div className="user-name-role">
-                  <div className="user-name-list">David</div>
-                  <div className="user-role-list">Admin</div>
-                </div>
-              </div>
-              <div className="edit-user">
-                <button className="button-edit">edit</button>
-              </div>
-              <div className="delete-user">
-                <button className="button-delete">delete</button>
-              </div>
-            </div>
+            <table class="users-table">
+              <tr class="user-row">
+                <td class="user-data">
+                  <div class="user-img"></div>
+                  <div class="user-name-role">
+                    <div class="user-name-list">David</div>
+                    <div class="user-role-list">Admin</div>
+                  </div>
+                </td>
+                <td class="edit-user">
+                  <button class="button-edit">edit</button>
+                </td>
+                <td class="delete-user">
+                  <button class="button-delete">delete</button>
+                </td>
+              </tr>
+            </table>
           </div>
           <div className="users-create">
             <h2>Create User</h2>
