@@ -25,3 +25,13 @@ use App\Http\Controllers\API\RegisterController;
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [RegisterController::class, 'login']);
+
+use App\Http\Controllers\API\RolesController;
+
+Route::controller(RolesController::class)->group(function () {
+    Route::get('/roles', 'index');
+    Route::post('/roles', 'store');
+    Route::get('/roles/{id}', 'show');    
+    Route::put('/roles/{id}', 'update');
+    Route::delete('/roles/{id}', 'destroy');
+});
