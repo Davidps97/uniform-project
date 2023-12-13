@@ -1,9 +1,57 @@
+import { useEffect, useRef, useState } from "react";
 import Sidenav from "../../components/sidenav/sidenav";
 import "./roles.css";
 import { FaBell } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import {
+  createRole,
+  deleteRole,
+  getAllRoles,
+  updateRole,
+} from "../../services/role.service";
 
 function Roles() {
+  const [roles, setRoles] = useState([]);
+  const [idToUpdate, setIdToUpdate] = useState(null);
+  const nameRef = useRef();
+
+  const getRoles = async () => {
+    const allRoles = await getAllRoles();
+    setRoles(allRoles);
+  };
+
+  const createNewRole = () => {
+    createRole(nameRef.current.value).then((response) => {
+      getRoles();
+      nameRef.current.value = "";
+    });
+  };
+
+  const deleteSelectedRole = (id) => {
+    deleteRole(id).then((response) => {
+      getRoles();
+    });
+  };
+
+  const editPutRole = (name, id) => {
+    nameRef.current.value = name;
+    setIdToUpdate(id);
+  };
+
+  const editSelectedRole = () => {
+    updateRole({ name: nameRef.current.value, id: idToUpdate }).then(
+      (response) => {
+        getRoles();
+        nameRef.current.value = "";
+        setIdToUpdate(null);
+      }
+    );
+  };
+
+  useEffect(() => {
+    getRoles();
+  }, []);
+
   return (
     <div className="home-container">
       <Sidenav />
@@ -32,28 +80,51 @@ function Roles() {
                 className="form__input"
                 placeholder="Tier 1 Role"
                 required=""
+                ref={nameRef}
               />
               <label htmlFor="name" className="form__label">
                 Role Name
               </label>
             </div>
             <div className="buttonRole-container">
-              <button className="button-create">Create Role</button>
+              {idToUpdate ? (
+                <button className="button-create" onClick={editSelectedRole}>
+                  Update Role
+                </button>
+              ) : (
+                <button className="button-create" onClick={createNewRole}>
+                  Create Role
+                </button>
+              )}
             </div>
           </div>
           <div className="divide-bar"></div>
           <div className="list-roles">
             <h2>Roles</h2>
-            <table class="roles-table">
-              <tr class="roles-row">
-                <td class="role-name">Tier 1 Role</td>
-                <td class="edit-role">
-                  <button class="button-edit">edit</button>
-                </td>
-                <td class="delete-role">
-                  <button class="button-delete">delete</button>
-                </td>
-              </tr>
+            <table className="roles-table">
+              {roles.map((role) => {
+                return (
+                  <tr key={role.id} className="roles-row">
+                    <td className="role-name">{role.name}</td>
+                    <td className="edit-role">
+                      <button
+                        className="button-edit"
+                        onClick={() => editPutRole(role.name, role.id)}
+                      >
+                        Edit
+                      </button>
+                    </td>
+                    <td className="delete-role">
+                      <button
+                        className="button-delete"
+                        onClick={() => deleteSelectedRole(role.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </table>
           </div>
         </div>

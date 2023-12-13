@@ -10,12 +10,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route element={<PrivateRoute/>}>
+        {/* <Route element={<PrivateRoute/>}> */}
           <Route path="/roles" element={<Roles />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/users" element={<Users />} />
           <Route path="/home" element={<Home />} />
-        </Route>
+        {/* </Route> */}
         <Route path="/" element={<Login />} />
         
       </Routes>

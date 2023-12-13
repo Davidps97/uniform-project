@@ -9,6 +9,8 @@ import {
   updateUser,
 } from "../../services/user.service";
 import { register } from "../../services/auth";
+import { Button, Popover, Select } from "antd";
+import { getAllRoles } from "../../services/role.service";
 
 function Users() {
   const [users, setUsers] = useState([]);
@@ -73,7 +75,40 @@ function Users() {
 
   useEffect(() => {
     getUsers();
+    getRoles();
   }, []);
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
+  const [roles, setRoles] = useState([]);
+
+  const getRoles = async () => {
+    const allRoles = await getAllRoles();
+    setRoles(allRoles);
+  };
+
+  const setOptions = () => {
+    let options = [];
+    roles.forEach((role, index) => {
+      options[index].label = role.name;
+      options[index].value = role.id;
+    });
+    return options;
+  };
+
+  const content = (
+    <div>
+      <Select
+        style={{
+          width: 120,
+        }}
+        onChange={handleChange}
+        options={setOptions}
+      />
+    </div>
+  );
 
   return (
     <div className="home-container">
@@ -125,6 +160,15 @@ function Users() {
                         >
                           delete
                         </button>
+                      </td>
+                      <td>
+                        <Popover
+                          content={content}
+                          title="Title"
+                          trigger="click"
+                        >
+                          <Button>Click me</Button>
+                        </Popover>
                       </td>
                     </tr>
                   ))}
