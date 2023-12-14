@@ -91,9 +91,11 @@ function Users() {
 
   const setOptions = () => {
     let options = [];
-    roles.forEach((role, index) => {
-      options[index].label = role.name;
-      options[index].value = role.id;
+    roles.forEach((role) => {
+      options.push({
+        label: role.name,
+        value: role.id,
+      });
     });
     return options;
   };
@@ -105,7 +107,7 @@ function Users() {
           width: 120,
         }}
         onChange={handleChange}
-        options={setOptions}
+        options={setOptions()}
       />
     </div>
   );
@@ -164,10 +166,10 @@ function Users() {
                       <td>
                         <Popover
                           content={content}
-                          title="Title"
+                          title="Roles"
                           trigger="click"
                         >
-                          <Button>Click me</Button>
+                          <Button>Set Role</Button>
                         </Popover>
                       </td>
                     </tr>

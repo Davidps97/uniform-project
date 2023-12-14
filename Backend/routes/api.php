@@ -41,3 +41,13 @@ Route::controller(RolesController::class)->group(function () {
     Route::delete('/roles/assign/{roleId}/{userId}', 'removeRole');
     Route::put('/roles/assign/{roleId}/{userId}', 'editUserRoles');
 });
+
+use App\Http\Controllers\API\ApplicationController;
+
+Route::controller(ApplicationController::class)->group(function (){
+    Route::get('/applications', 'index');
+    Route::post('/applications', 'store');
+    Route::get('/applications/{id}', 'show');    
+    Route::put('/applications/{id}', 'update');
+    Route::delete('/applications/{id}', 'destroy');
+});
