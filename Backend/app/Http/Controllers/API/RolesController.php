@@ -58,13 +58,22 @@ class RolesController extends Controller
         return $role;
     }
 
-    public function assignedRoles(Request $request)
+    public function assignedRoles($id)
     {
-        $user = $request->user();
+        $user = User::find($id);
 
-        $assignedRoles = $user->roles;
+        $assignedRoles = $user->roles()->get();
 
-        return response()->json(['assigned_roles' => $assignedRoles]);
+        $roleId = 0;
+
+        foreach ($assignedRoles as $role) {
+            $roleId = $role->pivot->role_id;
+            
+        }
+
+        $role = Roles::find($roleId);
+
+        return response()->json(['assigned_roles' => $role]);
     }
 
     public function assignRoleToUser(Request $request)

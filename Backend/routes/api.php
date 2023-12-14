@@ -36,7 +36,7 @@ Route::controller(RolesController::class)->group(function () {
     Route::delete('/roles/{id}', 'destroy');
 
     //endpoints assigned roles
-    Route::get('/roles/assign', 'assignedRoles');
+    Route::get('/roles/assign/{id}', 'assignedRoles');
     Route::post('/roles/assign', 'assignRoleToUser');
     Route::delete('/roles/assign/{roleId}/{userId}', 'removeRole');
     Route::put('/roles/assign/{roleId}/{userId}', 'editUserRoles');

@@ -2,6 +2,8 @@ import "./login.css";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { login } from "../../services/auth";
+import { jwtDecode } from "jwt-decode";
+import { getAllRoles, getRoleWithUser } from "../../services/role.service";
 
 function Login() {
   const loginRef = useRef() 
@@ -13,6 +15,12 @@ function Login() {
     console.log(email, password);
 
     login(email, password).then(response => {
+      const decodeToken = jwtDecode(response.data.token);
+      console.log(decodeToken);
+      getRoleWithUser(decodeToken.sub).then(response => {
+        localStorage.setItem("role", response.data.assigned_roles.name);
+        console.log(response.data.assigned_roles.name);
+      }) 
       localStorage.setItem("token", response.data.token);
       navigate("/users");
     })

@@ -33,4 +33,13 @@
   border-radius: 50%;
   background-color: #96D77A;
   margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icons-circle {
+  font-size: 60px;
+  margin-top: 10px;
 }

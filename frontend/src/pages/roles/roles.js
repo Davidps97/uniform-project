@@ -9,6 +9,7 @@ import {
   getAllRoles,
   updateRole,
 } from "../../services/role.service";
+import { Link } from "react-router-dom";
 
 function Roles() {
   const [roles, setRoles] = useState([]);
@@ -65,7 +66,7 @@ function Roles() {
               <FaBell />
             </div>
             <div className="user-image"></div>
-            <div className="profile-settings">Profile </div>
+            <div className="profile-settings"><Link to="/profile">Profile</Link> </div>
             <div className="profile-arrow">
               <IoIosArrowDown />
             </div>

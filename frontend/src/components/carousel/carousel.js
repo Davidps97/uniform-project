@@ -1,12 +1,12 @@
 import React from "react";
 import { Carousel } from "antd";
 const contentStyle = {
+  width:"100%",
   marginTop: "2em",
   height: "35em",
   color: "#fff",
   lineHeight: "55em",
   textAlign: "center",
-  background: "#364d79",
   borderRadius:"50px",
 };
 const CarouselComponent = () => {
@@ -17,16 +17,10 @@ const CarouselComponent = () => {
     <div style={{ width: "100%", margin: "0 auto" }}>
       <Carousel afterChange={onChange}>
         <div>
-          <h3 style={contentStyle}></h3>
+          <div style={contentStyle}><img alt="" src={"/images/carrousel1.jpg"}></img></div>
         </div>
         <div>
-          <h3 style={contentStyle}></h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}></h3>
-        </div>
-        <div>
-          <h3 style={contentStyle}></h3>
+          <div style={contentStyle}><img alt="" src={"/images/carrousel2.jpg"}></img></div>
         </div>
       </Carousel>
     </div>

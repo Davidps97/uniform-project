@@ -10,12 +10,15 @@ import {
 } from "../../services/user.service";
 import { register } from "../../services/auth";
 import { Button, Popover, Select } from "antd";
-import { getAllRoles } from "../../services/role.service";
+import { assignRoleToUser, getAllRoles } from "../../services/role.service";
+import { Link } from "react-router-dom";
 
 function Users() {
   const [users, setUsers] = useState([]);
   const [passwordV, setPasswordV] = useState(true);
   const [userToUpdate, setUserToUpdate] = useState();
+  const [userId, setUserId] = useState();
+  const [selectedRole, setSelectedRole] = useState();
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -79,7 +82,7 @@ function Users() {
   }, []);
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`);
+    setSelectedRole(value);
   };
 
   const [roles, setRoles] = useState([]);
@@ -88,6 +91,10 @@ function Users() {
     const allRoles = await getAllRoles();
     setRoles(allRoles);
   };
+
+  const assignUser = () => {
+    assignRoleToUser(userId, selectedRole);
+  }
 
   const setOptions = () => {
     let options = [];
@@ -109,6 +116,7 @@ function Users() {
         onChange={handleChange}
         options={setOptions()}
       />
+      <Button onClick={() => assignUser()}>OK</Button>
     </div>
   );
 
@@ -125,7 +133,7 @@ function Users() {
               <FaBell />
             </div>
             <div className="user-image"></div>
-            <div className="profile-settings">Profile </div>
+            <div className="profile-settings"><Link to="/profile">Profile</Link> </div>
             <div className="profile-arrow">
               <IoIosArrowDown />
             </div>
@@ -169,7 +177,7 @@ function Users() {
                           title="Roles"
                           trigger="click"
                         >
-                          <Button>Set Role</Button>
+                          <Button onClick={() => setUserId(user.id)}>Set Role</Button>
                         </Popover>
                       </td>
                     </tr>
@@ -209,7 +217,7 @@ function Users() {
             {passwordV && (
               <div className="form__group field">
                 <input
-                  type="input"
+                  type="password"
                   className="form__field"
                   placeholder="************"
                   required=""

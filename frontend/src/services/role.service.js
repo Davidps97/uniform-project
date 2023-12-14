@@ -32,3 +32,19 @@ export const updateRole = async (role) => {
 
   return response;
 }
+
+export const assignRoleToUser = async (user_id, role_id) => {
+  const body = new URLSearchParams();
+  body.append("roleId", role_id)
+  body.append("userId", user_id)
+
+  const response = await axios.post(`${API_URL}/api/roles/assign`, body);
+
+  return response;
+}
+
+export const getRoleWithUser = async (userId) => {
+  const response = await axios.get(`${API_URL}/api/roles/assign/${userId}`);
+
+  return response;
+}
