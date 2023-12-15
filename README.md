@@ -1,5 +1,5 @@
 # Class Diagram
-![Alt text](../readme-imgs/class-diagram.png)
+![Alt text](readme-imgs/class-diagram.png)
 ## In this diagram:
 
 - The main classes are User, Role, and Application.
@@ -56,4 +56,4 @@ The "applications" table represents the applications available in the system.
 ## Entity-Relationship Diagram
 Including a visual diagram representing the relationships between tables will aid in understanding the model.
 
-![Entity-relation-model](../readme-imgs/entidad-relacion.png)
+![Entity-relation-model](readme-imgs/entidad-relacion.png)

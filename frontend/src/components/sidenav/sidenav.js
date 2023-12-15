@@ -52,8 +52,8 @@ function Sidenav() {
             </Link>
           </>
         
-        <div className="circles"></div>
-        <div className="circles"></div>
+        <div className="circles">App 1</div>
+        <div className="circles">App 2</div>
         {applications.map((app) => {
           return <div className="circles">{app.name}</div>;
         })}
