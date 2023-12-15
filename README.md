@@ -65,7 +65,7 @@ Including a visual diagram representing the relationships between tables will ai
 
 ---
 
-# Differences between Types of Mobile Applications 
+# Differences between Types of Mobile Applications
 
 ## Native Applications
 
