@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { login } from "../../services/auth";
 import { jwtDecode } from "jwt-decode";
-import { getAllRoles, getRoleWithUser } from "../../services/role.service";
+import { getRoleWithUser } from "../../services/role.service";
+import { getOneUser } from "../../services/user.service";
 
 function Login() {
   const loginRef = useRef() 
@@ -12,15 +13,17 @@ function Login() {
     e.preventDefault();
     const email = loginRef.current.email.value;
     const password = loginRef.current.password.value;
-    console.log(email, password);
 
     login(email, password).then(response => {
       const decodeToken = jwtDecode(response.data.token);
-      console.log(decodeToken);
       getRoleWithUser(decodeToken.sub).then(response => {
         localStorage.setItem("role", response.data.assigned_roles.name);
-        console.log(response.data.assigned_roles.name);
       }) 
+
+      getOneUser(decodeToken.sub).then(response => {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      })
+
       localStorage.setItem("token", response.data.token);
       navigate("/users");
     })

@@ -26,7 +26,6 @@ function Users() {
   const getUsers = async () => {
     const allUsers = await getAllUsers();
     setUsers(allUsers);
-    console.log(allUsers);
   };
 
   const handleDeleteUser = (id) => {

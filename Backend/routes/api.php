@@ -20,6 +20,7 @@ use App\Http\Controllers\UserController;
 // });
 
 Route::resource('users', UserController::class);
+Route::get('/user/{id}', [UserController::class, 'show']); 
 
 use App\Http\Controllers\API\RegisterController;
 

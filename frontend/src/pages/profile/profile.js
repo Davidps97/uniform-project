@@ -2,16 +2,26 @@ import Sidenav from "../../components/sidenav/sidenav";
 import "./profile.css";
 import { FaBell } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
+  const getUserData = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    return user;
+  }
+
+  const deleteLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  }
   return (
     <div className="home-container">
       <Sidenav />
       <div className="user-container">
         <div className="top-bar">
           <div className="user-name">
-            <h2>David Pérez Santana</h2>
+            <h2>{getUserData().name}</h2>
           </div>
           <div className="user-profile">
             <div className="notification">
@@ -28,19 +38,19 @@ function Profile() {
           <h1>User Profile</h1>
           <div className="name">
             <div>Name: </div>
-            <div>David Perez Santana</div>
+            <div>{getUserData().name}</div>
           </div>
           <div className="e-mail">
             <div>E-mail: </div>
-            <div>davidperez@gmail.com</div>
+            <div>{getUserData().email}</div>
           </div>
           <div className="role">
             <div>Role: </div>
-            <div>Tier 1 Role</div>
+            <div>{localStorage.getItem("role")}</div>
           </div>
-          <Link to="/" className="button-container">
-            <button className="button-logout">Log Out</button>
-          </Link>
+          <div>
+            <button className="button-logout" onClick={() => deleteLogout()}>Log Out</button>
+          </div>
         </div>
       </div>
     </div>

@@ -9,6 +9,12 @@ export const getAllUsers = async () => {
   return users;
 }
 
+export const getOneUser = async (id) => {
+  const response = await axios.get(`${API_URL}/api/users/${id}`);
+
+  return response;
+}
+
 export const deleteUser = async (id) => {
   const response = await axios.delete(`${API_URL}/api/users/${id}`);
 

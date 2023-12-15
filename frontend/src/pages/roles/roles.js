@@ -49,6 +49,11 @@ function Roles() {
     );
   };
 
+  const getUserData = () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    return user.name;
+  }
+
   useEffect(() => {
     getRoles();
   }, []);
@@ -59,7 +64,7 @@ function Roles() {
       <div className="user-container">
         <div className="top-bar">
           <div className="user-name">
-            <h2>David Pérez Santana</h2>
+            <h2>{getUserData()}</h2>
           </div>
           <div className="user-profile">
             <div className="notification">

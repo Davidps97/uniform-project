@@ -14,7 +14,7 @@ const CarouselComponent = () => {
     console.log(currentSlide);
   };
   return (
-    <div style={{ width: "100%", margin: "0 auto" }}>
+    <div style={{ width: "100%", margin: "0 auto", overflow: "hidden" }}>
       <Carousel afterChange={onChange}>
         <div>
           <div style={contentStyle}><img alt="" src={"/images/carrousel1.jpg"}></img></div>

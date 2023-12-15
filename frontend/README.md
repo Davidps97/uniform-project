@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Class Diagram
+![Alt text](../readme-imgs/class-diagram.png)
+## In this diagram:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- The main classes are User, Role, and Application.
+- The many-to-many relationship between User and Role is represented by the Roles_to_Users class, which acts as an intermediate table.
+- The one-to-many relationship between Role and Application is represented by an arrow indicating the direction of the relationship.
 
-## Available Scripts
+# Entity-Relationship Model
 
-In the project directory, you can run:
+This repository contains the description of the entity-relationship model for a database managing users, roles, and applications.
 
-### `npm start`
+## Table "users"
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Description
+The "users" table stores information about the system's users.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Fields
+- **id**: Unique identifier for each user.
+- **name**: User's name.
+- **email**: User's email address.
+- **password**: User's password.
 
-### `npm test`
+## Table "roles"
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Description
+The "roles" table maintains information about the roles available in the system.
 
-### `npm run build`
+### Fields
+- **id**: Unique identifier for each role.
+- **name**: Role name.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Table "roles_to_users" (Intermediate Table)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Description
+The intermediate table "roles_to_users" establishes a many-to-many relationship between users and roles.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Fields
+- **user_id**: Foreign key referencing the user.
+- **role_id**: Foreign key referencing the role.
 
-### `npm run eject`
+## Table "applications"
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Description
+The "applications" table represents the applications available in the system.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Fields
+- **id**: Unique identifier for each application.
+- **name**: Application name.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Relationships
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The "users" table has a many-to-many relationship with the "roles" table through the intermediate table "roles_to_users."
+- The "applications" table has a one-to-many relationship with the "roles" table.
 
-## Learn More
+## Entity-Relationship Diagram
+Including a visual diagram representing the relationships between tables will aid in understanding the model.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Entity-relation-model](../readme-imgs/entidad-relacion.png)

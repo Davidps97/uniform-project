@@ -38,21 +38,26 @@ function Sidenav() {
       </div>
       <div className="small-bar"></div>
       <div className="apps-container">
-        <Link to="../users" className="circles">
-          <div className="icons-circle">
-            <CiUser />
-          </div>
-        </Link>
-        <Link to="../roles" className="circles">
-          <div className="icons-circle">
-            <CiSettings />
-          </div>
-        </Link>
+        {/* { localStorage.getItem("role") === "admin" &} */}
+          <>
+            <Link to="../users" className="circles">
+              <div className="icons-circle">
+                <CiUser />
+              </div>
+            </Link>
+            <Link to="../roles" className="circles">
+              <div className="icons-circle">
+                <CiSettings />
+              </div>
+            </Link>
+          </>
+        
         <div className="circles"></div>
         <div className="circles"></div>
         {applications.map((app) => {
           return <div className="circles">{app.name}</div>;
         })}
+        {/* { localStorage.getItem("role") === "admin" &} */}
         <div className="circles" onClick={showModal}>
           <div className="icons-circle">
             <LiaPlusSolid />
