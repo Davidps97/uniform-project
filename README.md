@@ -63,8 +63,11 @@ Including a visual diagram representing the relationships between tables will ai
 
 ![Entity-relation-model](readme-imgs/entidad-relacion.png)
 
+<<<<<<< HEAD
 ---
 
+=======
+>>>>>>> 0961f83 (readme)
 # Differences between Types of Mobile Applications
 
 ## Native Applications
