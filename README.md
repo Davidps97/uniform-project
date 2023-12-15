@@ -4,6 +4,7 @@
 
 # Class Diagram
 ![Alt text](readme-imgs/class-diagram.png)
+
 ## In this diagram:
 
 - The main classes are User, Role, and Application.
@@ -62,6 +63,11 @@ Including a visual diagram representing the relationships between tables will ai
 
 ![Entity-relation-model](readme-imgs/entidad-relacion.png)
 
+<<<<<<< HEAD
+=======
+---
+
+>>>>>>> a83912859582c1f1973285826ab010414d89d2e9
 # Differences between Types of Mobile Applications
 
 ## Native Applications
