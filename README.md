@@ -1,5 +1,10 @@
+# Use Case Diagram
+
+![Alt text](readme-imgs/UseCaseDiagramCentralUniformes.jpg)
+
 # Class Diagram
 ![Alt text](readme-imgs/class-diagram.png)
+
 ## In this diagram:
 
 - The main classes are User, Role, and Application.
@@ -57,3 +62,48 @@ The "applications" table represents the applications available in the system.
 Including a visual diagram representing the relationships between tables will aid in understanding the model.
 
 ![Entity-relation-model](readme-imgs/entidad-relacion.png)
+
+---
+
+# Differences between Types of Mobile Applications
+
+## Native Applications
+
+- **Definition:** Native applications are specifically developed for a particular platform using the native language of that platform.
+- **Advantages:**
+  - Fast and smooth performance.
+  - Full access to the device's hardware.
+- **Disadvantages:**
+  - Development costs and time.
+  - Distribution through app stores.
+
+## Web Applications
+
+- **Definition:** Accessible through a web browser and do not require installation on the device.
+- **Advantages:**
+  - Cross-platform, running on any device with a browser.
+  - No installation required, and they update automatically.
+- **Disadvantages:**
+  - Limited access to hardware.
+  - Performance may be inferior to native applications.
+
+## Hybrid Applications
+
+- **Definition:** Use web technologies and are wrapped in a native container to run on multiple platforms.
+- **Advantages:**
+  - Faster development with a shared codebase.
+  - Distribution through app stores.
+- **Disadvantages:**
+  - Performance may be inferior.
+  - Limited access to hardware.
+
+## Progressive Web Apps (PWAs)
+
+- **Definition:** Web applications with functionalities similar to native applications.
+- **Advantages:**
+  - Optional installation on the home screen.
+  - Offline functionality.
+- **Disadvantages:**
+  - Limited access to hardware.
+  - Experience may vary depending on the browser.
+
