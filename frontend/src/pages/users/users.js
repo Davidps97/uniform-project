@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Sidenav from "../../components/sidenav/sidenav";
 import "./users.css";
 import { FaBell } from "react-icons/fa";
@@ -9,7 +9,7 @@ import {
   updateUser,
 } from "../../services/user.service";
 import { register } from "../../services/auth";
-import { Button, Popover, Select } from "antd";
+import { Button, Popover, Select, message } from "antd";
 import { assignRoleToUser, getAllRoles } from "../../services/role.service";
 import { Link } from "react-router-dom";
 
@@ -19,13 +19,18 @@ function Users() {
   const [userToUpdate, setUserToUpdate] = useState();
   const [userId, setUserId] = useState();
   const [selectedRole, setSelectedRole] = useState();
+  const [errors, setErrors] = useState({ name: "", email: "", password: "" });
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const getUsers = async () => {
-    const allUsers = await getAllUsers();
-    setUsers(allUsers);
+  const getUsers = () => {
+    message.loading("Loading...", 0);
+    getAllUsers().then((allUsers) => {
+      message.destroy();
+      message.success("Loading successful");
+      setUsers(allUsers);
+    });
   };
 
   const handleDeleteUser = (id) => {
@@ -35,11 +40,34 @@ function Users() {
   };
 
   const handleCreateUser = () => {
-    register(
-      nameRef.current.value,
-      emailRef.current.value,
-      passwordRef.current.value
-    ).then((response) => {
+    setErrors({ name: "", email: "", password: "" });
+
+    const name = nameRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    if (!name) {
+      setErrors((prevErrors) => ({ ...prevErrors, name: "Name is required" }));
+      return;
+    }
+
+    if (!email) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Email is required",
+      }));
+      return;
+    }
+
+    if (!password && passwordV) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password is required",
+      }));
+      return;
+    }
+
+    register(name, email, password).then((response) => {
       getUsers();
       nameRef.current.value = "";
       emailRef.current.value = "";
@@ -56,9 +84,36 @@ function Users() {
   };
 
   const handleSaveUser = () => {
+    setErrors({ name: "", email: "", password: "" });
+
+    const name = nameRef.current.value;
+    const email = emailRef.current.value;
+    const password = passwordRef.current.value;
+
+    if (!name) {
+      setErrors((prevErrors) => ({ ...prevErrors, name: "Name is required" }));
+      return;
+    }
+
+    if (!email) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: "Email is required",
+      }));
+      return;
+    }
+
+    if (!password && passwordV) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: "Password is required",
+      }));
+      return;
+    }
+
     const user = {
-      name: nameRef.current.value,
-      email: emailRef.current.value,
+      name,
+      email,
       id: userToUpdate,
     };
 
@@ -93,7 +148,7 @@ function Users() {
 
   const assignUser = () => {
     assignRoleToUser(userId, selectedRole);
-  }
+  };
 
   const setOptions = () => {
     let options = [];
@@ -132,7 +187,9 @@ function Users() {
               <FaBell />
             </div>
             <div className="user-image"></div>
-            <div className="profile-settings"><Link to="/profile">Profile</Link> </div>
+            <div className="profile-settings">
+              <Link to="/profile">Profile</Link>{" "}
+            </div>
             <div className="profile-arrow">
               <IoIosArrowDown />
             </div>
@@ -142,29 +199,26 @@ function Users() {
           <div className="users-list">
             <h2>Users</h2>
             {users ? (
-              <table class="users-table">
+              <table className="users-table">
                 <tbody>
                   {users.map((user) => (
-                    <tr class="user-row">
-                      <td class="user-data">
-                        {/* <div class="user-img"></div> */}
-
-                        <div class="user-name-role">
-                          <div class="user-name-list">{user.name}</div>
-                          {/* <div class="user-role-list">Admin</div> */}
+                    <tr key={user.id} className="user-row">
+                      <td className="user-data">
+                        <div className="user-name-role">
+                          <div className="user-name-list">{user.name}</div>
                         </div>
                       </td>
-                      <td class="edit-user">
+                      <td className="edit-user">
                         <button
-                          class="button-edit"
+                          className="button-edit"
                           onClick={() => handlePutUser(user)}
                         >
                           edit
                         </button>
                       </td>
-                      <td class="delete-user">
+                      <td className="delete-user">
                         <button
-                          class="button-delete"
+                          className="button-delete"
                           onClick={() => handleDeleteUser(user.id)}
                         >
                           delete
@@ -176,7 +230,9 @@ function Users() {
                           title="Roles"
                           trigger="click"
                         >
-                          <Button onClick={() => setUserId(user.id)}>Set Role</Button>
+                          <Button onClick={() => setUserId(user.id)}>
+                            Set Role
+                          </Button>
                         </Popover>
                       </td>
                     </tr>
@@ -200,10 +256,11 @@ function Users() {
               <label htmlFor="name" className="form__label">
                 Name:
               </label>
+              {errors.name && <p className="error-message">{errors.name}</p>}
             </div>
             <div className="form__group field">
               <input
-                type="input"
+                type="email"
                 className="form__field"
                 placeholder="davidperez@gmail.com"
                 required=""
@@ -212,6 +269,7 @@ function Users() {
               <label htmlFor="name" className="form__label">
                 E-mail:
               </label>
+              {errors.email && <p className="error-message">{errors.email}</p>}
             </div>
             {passwordV && (
               <div className="form__group field">
@@ -225,6 +283,9 @@ function Users() {
                 <label htmlFor="name" className="form__label">
                   Password:
                 </label>
+                {errors.password && (
+                  <p className="error-message">{errors.password}</p>
+                )}
               </div>
             )}
             <div className="button-container">
