@@ -10,15 +10,20 @@ import {
   updateRole,
 } from "../../services/role.service";
 import { Link } from "react-router-dom";
+import { message } from "antd";
 
 function Roles() {
   const [roles, setRoles] = useState([]);
   const [idToUpdate, setIdToUpdate] = useState(null);
   const nameRef = useRef();
 
-  const getRoles = async () => {
-    const allRoles = await getAllRoles();
-    setRoles(allRoles);
+  const getRoles = () => {
+    message.loading("Loading...", 0);
+    getAllRoles().then((allRoles) => {
+      message.destroy();
+      message.success("Loading succesfull");
+      setRoles(allRoles);
+    });
   };
 
   const createNewRole = () => {
@@ -52,7 +57,7 @@ function Roles() {
   const getUserData = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     return user.name;
-  }
+  };
 
   useEffect(() => {
     getRoles();
@@ -71,7 +76,9 @@ function Roles() {
               <FaBell />
             </div>
             <div className="user-image"></div>
-            <div className="profile-settings"><Link to="/profile">Profile</Link> </div>
+            <div className="profile-settings">
+              <Link to="/profile">Profile</Link>{" "}
+            </div>
             <div className="profile-arrow">
               <IoIosArrowDown />
             </div>
